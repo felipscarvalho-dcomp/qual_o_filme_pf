@@ -27,7 +27,7 @@ const startGame = () => {
         <div id="movie-images">
 		    <img src="${`./assets/movies/${movie.start_image}.jpeg`}" alt="${`image_${movie.start_image.slice(-1)}`}" />
         </div>
-		<form>
+		<form id="movie-form">
 			<input id="guess-input" type="text" />
 			<button type="button" onClick="guessMovie()">Tentar</button>
 		</form>
@@ -36,14 +36,22 @@ const startGame = () => {
   document.getElementById("movie-card").innerHTML = startCard;
 };
 
+const restart = () => {
+  window.location.reload();
+};
+
 const guessMovie = () => {
   const playerGuess = document.getElementById("guess-input").value;
 
+  // Check if the guess is correct
   if (movie.acceptable_guess.includes(playerGuess.toLowerCase())) {
     const movieCard = document.getElementById("movie-card");
+    const movieForm = document.getElementById("movie-form");
 
+    movieForm.innerHTML = movieForm.innerHTML + `<button type="button" onClick="restart()">Tentar novamente</button>`;
     movieCard.innerHTML = "<h2>Você acertou!!!</h2>" + movieCard.innerHTML;
   } else {
+    // If not, show next image
     const movieImages = document.getElementById("movie-images");
     const imagesNumber = movieImages.childElementCount;
 
@@ -56,8 +64,11 @@ const guessMovie = () => {
 
       movieImages.appendChild(newImageContainer.firstChild);
     } else {
+      // If wasted all guesses, show restart button
       const movieCard = document.getElementById("movie-card");
+      const movieForm = document.getElementById("movie-form");
 
+      movieForm.innerHTML = movieForm.innerHTML + `<button type="button" onClick="restart()">Tentar novamente</button>`;
       movieCard.innerHTML = "<h2>Você Falhou!!!</h2>" + movieCard.innerHTML;
     }
   }
