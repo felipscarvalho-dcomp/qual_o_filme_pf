@@ -1,11 +1,11 @@
 const movies = [
   {
     title: "Dirty Dancing - Ritmo Quente",
-    acceptable_guess: ["dirty dancing - ditmo duente", "dirty dancing", "dirty dancing ritmo quente", "dirty dancing: ritmo quente"],
+    acceptable_guess: ["dirty dancing - ritmo quente", "dirty dancing", "dirty dancing ritmo quente", "dirty dancing: ritmo quente", "ritmo quente"],
     start_image: "img_1",
-	  hints: {
+    hints: {
       year: "1986",
-      genre: "drama romântico-musical",
+      genre: ["drama romântico", " musical"],
       director: "Emile Ardolino",
       sumary: "Passando o verão em um resort em Catskills com sua família, Frances 'Baby' Houseman se apaixona pelo instrutor de dança do acampamento, Johnny Castle."
     }
@@ -14,7 +14,7 @@ const movies = [
     title: "Thor: Ragnarok",
     acceptable_guess: ["thor: ragnarok", "thor ragnarok", "thor 3"],
     start_image: "img_7",
-	  hints: {
+    hints: {
       year: "2017",
       genre: "super-herói",
       director: "Taika Waititi",
