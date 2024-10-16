@@ -24,6 +24,7 @@ const startGame = () => {
 
   const startCard = `
 		<h2>Acerte o Filme</h2>
+  	<button type="button" id="btn-hint" onClick="hint()">Dica</button>
         <div id="movie-images">
 		    <img src="${`./assets/movies/${movie.start_image}.jpeg`}" alt="${`image_${movie.start_image.slice(-1)}`}" />
         </div>
@@ -73,3 +74,33 @@ const guessMovie = () => {
     }
   }
 };
+
+// função para o botão de dica
+const hint = () => {
+  const hintCard = `
+  <h2>Dicas</h2>
+  <h2>Ano de lançamento: ${movie.hints.year} </h2>`;
+  const hintCard2 = `<h2>Dicas</h2>
+  <h2>Ano de lançamento: ${movie.hints.year} </h2>
+  <h2>Gênero: ${movie.hints.genre} </h2>`
+  const hintCard3 = `<h2>Dicas</h2>
+  <h2>Ano de lançamento: ${movie.hints.year} </h2>
+  <h2>Gênero: ${movie.hints.genre} </h2>
+  <h2>Diretor: ${movie.hints.director} </h2>`
+  const hintCard4 = `${hintCard3}` + `<h2>Sinópse: ${movie.hints.sumary} </h2>`
+
+
+  if (document.getElementById("hint-card").innerHTML == ""){
+  return (document.getElementById("hint-card").innerHTML = hintCard)}
+
+  else if (document.getElementById("hint-card").innerHTML === hintCard) {
+  return (document.getElementById("hint-card").innerHTML = hintCard2)}
+
+  else if (document.getElementById("hint-card").innerHTML === hintCard2) {
+  return(document.getElementById("hint-card").innerHTML = hintCard3);}
+
+  else if (document.getElementById("hint-card").innerHTML === hintCard3) {
+  return(document.getElementById("hint-card").innerHTML = hintCard4);}
+
+  else return((document.getElementById("hint-card").innerHTML = hintCard4))
+}
