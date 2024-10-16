@@ -3,11 +3,23 @@ const movies = [
     title: "Dirty Dancing - Ritmo Quente",
     acceptable_guess: ["dirty dancing - ditmo duente", "dirty dancing", "dirty dancing ritmo quente", "dirty dancing: ritmo quente"],
     start_image: "img_1",
+	  hints: {
+      year: "1986",
+      genre: "drama romântico-musical",
+      director: "Emile Ardolino",
+      sumary: "Passando o verão em um resort em Catskills com sua família, Frances 'Baby' Houseman se apaixona pelo instrutor de dança do acampamento, Johnny Castle."
+    }
   },
   {
     title: "Thor: Ragnarok",
     acceptable_guess: ["thor: ragnarok", "thor ragnarok", "thor 3"],
     start_image: "img_7",
+	  hints: {
+      year: "2017",
+      genre: "super-herói",
+      director: "Taika Waititi",
+      sumary: "Thor está aprisionado do outro lado do universo, sem seu martelo, e se vê em uma corrida para voltar até Asgard e impedir o Ragnarok, que está nas mãos de uma nova e poderosa ameaça, a terrível Hela."
+    }
   },
 ];
 
