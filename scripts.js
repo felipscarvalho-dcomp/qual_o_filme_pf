@@ -65,6 +65,42 @@ const movies = [
       synopsis: "O Deckard Shaw procura vingar-se do Dominic Toretto e sua familia.",
     },
   },
+   {
+    title: "O Castelo Animado",
+    acceptable_guess: ["o castelo animado", "castelo animado", "o castelo andante", "hauru no ugoku shiro", "howl's moving castle", "howls moving castle"],
+    start_image: "img_31",
+    image_code: 31,
+    hints: {
+      year: "2004",
+      genre: ["animação", " fantasia", " aventura"],
+      director: "Hayao Miyazaki",
+      synopsis: "Uma jovem sem autoconfiança é amaldiçoada com um corpo envelhecido por uma bruxa odiosa. Sua única chance de quebrar o feitiço é um jovem feiticeiro em um castelo itinerante."
+    }
+  },
+  {
+    title: "A Fuga das Galinhas",
+    acceptable_guess: ["a fuga das galinhas", "fuga das galinhas", "chicken run"],
+    start_image: "img_37",
+    image_code: 37,
+    hints: {
+      year: "2000",
+      genre: ["stop-motion", " comédia", " aventura"],
+      director: ["Peter Lord", " Nick Park"],
+      synopsis: "Quando um galo aparentemente voa para uma fazenda de galinhas, as galinhas o veem como uma oportunidade de escapar de seus maus proprietários."
+    }
+  },
+  {
+    title: "Coringa",
+    acceptable_guess: ["coringa", "joker"],
+    start_image: "img_43",
+    image_code: 43,
+    hints: {
+      year: "2019",
+      genre: ["suspense psicológico"],
+      director: "Todd Phillips",
+      synopsis: "Um comediante falido enlouquece e se torna um assassino psicopata."
+    }
+  },
 ];
 
 const getRandomGame = () => {
@@ -109,6 +145,9 @@ const restart = () => {
 const guessLobby = (playerGuess) => {
   const guessLobby = document.getElementById("guess-lobby");
 
+  const movieImages = document.getElementById("movie-images");
+  const imagesNumber = movieImages.childElementCount;
+
   // Conditionals to display the guesses
   if (movie.acceptable_guess.includes(playerGuess.toLowerCase())) {
     guessLobby.innerHTML = guessLobby.innerHTML + `<span> &#9989: ${playerGuess} </span>`;
@@ -131,13 +170,13 @@ const guessMovie = () => {
     movieForm.innerHTML =
       movieForm.innerHTML +
       `<button class="btn" style="margin: 1rem .5rem" id:"btn_tryAgain" type="button" onClick="restart()">Tentar novamente</button>`;
-    movieForm.innerHTML = `<div style="width: 100%"> <h2 class="success">Você Acertou!</h2> <br> <div  class="movie__form"> ${movieForm.innerHTML} </div> </div>`;
-  } else {
+	  
+    if (imagesNumber === 1) {movieForm.innerHTML = `<div style="width: 100%"> <h2 class="success">Parabéns</h2> 
+    <h3 class="answer"> Você acertou de primeira em ${Number(document.getElementById("secs").innerHTML)} segundos </h3> <br> 
+    <div  class="movie__form"> ${movieForm.innerHTML} </div> </div>`;}
+   else {movieForm.innerHTML = `<div style="width: 100%"> <h2 class="success">Parabéns</h2> <h3 class="answer"> Você acertou em ${imagesNumber} tentativas em ${Number(document.getElementById("secs").innerHTML)} segundos </h3> <br> <div  class="movie__form"> ${movieForm.innerHTML} </div> </div>`;}}
     // If not, show next image
-    const movieImages = document.getElementById("movie-images");
-    const imagesNumber = movieImages.childElementCount;
-
-    if (imagesNumber < 6) {
+    else if (imagesNumber < 6) {
       const firstImageNumber = Number(movie.start_image);
       const newImageContainer = Object.freeze(document.createElement("div"));
       newImageContainer.innerHTML = `<img class="movie__image" src="${`./assets/movies/img_${
