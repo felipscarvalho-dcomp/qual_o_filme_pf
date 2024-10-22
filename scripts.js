@@ -68,8 +68,7 @@ const movies = [
    {
     title: "O Castelo Animado",
     acceptable_guess: ["o castelo animado", "castelo animado", "o castelo andante", "hauru no ugoku shiro", "howl's moving castle", "howls moving castle"],
-    start_image: "img_31",
-    image_code: 31,
+    start_image: "31",
     hints: {
       year: "2004",
       genre: ["animação", " fantasia", " aventura"],
@@ -80,8 +79,7 @@ const movies = [
   {
     title: "A Fuga das Galinhas",
     acceptable_guess: ["a fuga das galinhas", "fuga das galinhas", "chicken run"],
-    start_image: "img_37",
-    image_code: 37,
+    start_image: "37",
     hints: {
       year: "2000",
       genre: ["stop-motion", " comédia", " aventura"],
@@ -92,8 +90,7 @@ const movies = [
   {
     title: "Coringa",
     acceptable_guess: ["coringa", "joker"],
-    start_image: "img_43",
-    image_code: 43,
+    start_image: "43",
     hints: {
       year: "2019",
       genre: ["suspense psicológico"],
@@ -197,8 +194,7 @@ const guessMovie = () => {
         movieForm.innerHTML + `<button class="btn" style="margin: 1rem .5rem" type="button" onClick="restart()">Tentar novamente</button>`;
       movieForm.innerHTML = `<div style="width: 100%"> <h2 class="fail">Você Falhou!</h2>  <h3 class="answer"> Resposta: ${movie.title} </h3> <br> <div  class="movie__form"> ${movieForm.innerHTML} </div> </div>`;
     }
-  }
-};
+  };
 
 // Function for the hint button
 const hint = (movie) => {
