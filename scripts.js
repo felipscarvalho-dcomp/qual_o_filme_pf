@@ -98,6 +98,28 @@ const movies = [
       synopsis: "Um comediante falido enlouquece e se torna um assassino psicopata."
     }
   },
+ {
+    title: "Homem-Formiga",
+    acceptable_guess: ["homem-formiga", "homem formiga", "ant-man", "ant man"],
+    start_image: "49",
+    hints: {
+      year: "2015",
+      genre: ["ação", "ficção científica", "aventura", "comédia"],
+      director: "Peyton Reed",
+      synopsis: "Armado de um terno com a capacidade para se encolher mas para incrementar sua força, o ladrão Scott Lang deberá ser um herói e ajudar a seu mentor, Hank Pym, para fazer um assalto que salvará ao mundo."
+    }
+  },
+  {
+    title: "Titanic",
+    acceptable_guess: ["titanic"],
+    start_image: "55",
+    hints: {
+      year: "1997",
+      genre: [" épico", " drama", " romance"],
+      director: "James Cameron",
+      synopsis: "Uma aristocrata de dezessete anos se apaixona por um artista gentil mas pobre a bordo do luxuoso e desafortunado navio."
+    }
+  }
 ];
 
 const getRandomGame = () => {
@@ -158,6 +180,9 @@ const guessLobby = (playerGuess) => {
 const guessMovie = () => {
   const playerGuess = document.getElementById("guess-input").value;
   guessLobby(playerGuess);
+    const movieImages = document.getElementById("movie-images");
+    const imagesNumber = movieImages.childElementCount;
+
   // Check if the guess is correct
   if (movie.acceptable_guess.includes(playerGuess.trim().toLowerCase())) {
     const movieCard = document.getElementById("movie-card");
