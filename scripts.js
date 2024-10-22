@@ -23,6 +23,48 @@ const movies = [
         "Thor está aprisionado do outro lado do universo, sem seu martelo, e se vê em uma corrida para voltar até Asgard e impedir o Ragnarok, que está nas mãos de uma nova e poderosa ameaça, a terrível Hela.",
     },
   },
+  {
+    title: "Up: Altas Aventuras",
+    acceptable_guess: ["up: altas aventuras", "up", "altas aventuras", "up altas aventuras", "up: altamente", "up - altas aventuras"],
+    start_image: "13",
+    hints: {
+      year: "2009",
+      genre: ["animação", " aventura", " comédia"],
+      director: "Pete Docter",
+      synopsis: "Carl Fredricksen, de 78 anos, viaja para a América do Sul com sua casa, inadvertidamente levando um menino com ele.",
+    },
+  },
+  {
+    title: "Shrek 2",
+    acceptable_guess: ["shrek 2", "shrek dois"],
+    start_image: "19",
+    hints: {
+      year: "2004",
+      genre: ["animação", " comédia", " aventura"],
+      director: ["Andrew Adamson", " Kelly Asbury", " Conrad Vernon"],
+      synopsis:
+        "Os pais da princesa Fiona convidam ela e Shrek para jantar para celebrar seu casamento, mas eles não sabem que os recém-casados são ogros",
+    },
+  },
+  {
+    title: "Velozes e Furiosos 7",
+    acceptable_guess: [
+      "velozes e furiosos 7",
+      "velozes furiosos 7",
+      "furious 7",
+      "velocidade furiosa 7",
+      "velozes e furiosos sete",
+      "furious seven",
+      "velocidade furiosa sete",
+    ],
+    start_image: "25",
+    hints: {
+      year: "2017",
+      genre: ["ação"],
+      director: "James Wan",
+      synopsis: "O Deckard Shaw procura vingar-se do Dominic Toretto e sua familia.",
+    },
+  },
 ];
 
 const getRandomGame = () => {

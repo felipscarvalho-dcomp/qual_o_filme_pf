@@ -31,13 +31,13 @@ body {
 
 .movie__images__slider {
   display: flex;
-  max-width: 900px;
+  max-width: 100%;
   overflow-x: scroll;
   transition: 0.75s ease;
 }
 
 .movie__image {
-  max-width: 800px;
+  max-width: 100%;
   height: auto;
 }
 
