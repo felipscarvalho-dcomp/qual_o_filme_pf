@@ -33,6 +33,7 @@ body {
   display: flex;
   max-width: 900px;
   overflow-x: scroll;
+  transition: 0.75s ease;
 }
 
 .movie__image {
@@ -124,4 +125,36 @@ body {
 .lobby_guesses > span {
   align-self: flex-start;
   padding: 0.25rem 0;
+}
+
+.fail {
+  color: red;
+  width: 100%;
+  text-align: center;
+  margin: 0.5rem 0 0.5rem 0;
+}
+
+.success {
+  color: green;
+  width: 100%;
+  text-align: center;
+  margin: 0.5rem 0 0.5rem 0;
+}
+
+.answer {
+  width: 100%;
+  text-align: center;
+}
+
+.time__card {
+  background-color: rgb(106, 116, 255, 0.2);
+  padding: 1rem 2.25rem;
+  border: 1px solid rgb(106, 116, 255);
+  font-size: large;
+  position: fixed;
+  border-radius: 12px;
+  left: 50%;
+  transform: translate(-50%);
+  top: 0;
+  margin-top: 2rem;
 }

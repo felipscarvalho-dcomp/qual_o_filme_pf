@@ -41,21 +41,22 @@ const startGame = () => {
       <p id="hints" class="hints"> </p>
         <button class="btn" type="button" id="btn-hint" onClick="hint(movie)">Dica</button>
       </div>
-      <div class="timer" id="time-card">
       </div> <br>
       <div class="movie__images__slider"  id="movie-images">
 		    <img class="movie__image" src="${`./assets/movies/img_${movie.start_image}.jpeg`}" alt="${`image_${movie.start_image}`}" />
       </div>
-		  <form class="movie__form" id="movie-form">
+      <div class="time__card" id="time-card"> </div>
+      <div class="lobby_guesses" id="guess-lobby">
+      <h3> Tentativas: </h3>
+      </div>
+		  <form class="movie__form" id="movie-form" onSubmit="return false;">
 		  	<input class="input" id="guess-input" type="text" placeholder="Tente um filme ou aperte tentar para pular para a próxima imagem"/>
 		  	<button class="btn" style="margin: 1rem .5rem" type="button" onClick="guessMovie()">Tentar</button>
 		  </form>
-    <div class="lobby_guesses" id="guess-lobby">
-      <h3> Tentativas: </h3>
-      </div>
     `;
 
   document.getElementById("movie-card").innerHTML = startCard;
+  startTimer();
 };
 
 const restart = () => {
@@ -67,23 +68,28 @@ const guessLobby = (playerGuess) => {
   const guessLobby = document.getElementById("guess-lobby");
 
   // Conditionals to display the guesses
-    if (movie.acceptable_guess.includes(playerGuess.toLowerCase())) {
-    guessLobby.innerHTML = guessLobby.innerHTML + `<span> &#9989: ${playerGuess} </span>`;}
-    else if  (playerGuess == "") {guessLobby.innerHTML = guessLobby.innerHTML + `<span> &#10060: Pulou </span>`}
-    else {guessLobby.innerHTML = guessLobby.innerHTML + `<span> &#10060: ${playerGuess} </span>`;}
-}
+  if (movie.acceptable_guess.includes(playerGuess.toLowerCase())) {
+    guessLobby.innerHTML = guessLobby.innerHTML + `<span> &#9989: ${playerGuess} </span>`;
+  } else if (playerGuess == "") {
+    guessLobby.innerHTML = guessLobby.innerHTML + `<span> &#10060: Pulou </span>`;
+  } else {
+    guessLobby.innerHTML = guessLobby.innerHTML + `<span> &#10060: ${playerGuess} </span>`;
+  }
+};
 
 const guessMovie = () => {
   const playerGuess = document.getElementById("guess-input").value;
-  guessLobby(playerGuess)
+  guessLobby(playerGuess);
   // Check if the guess is correct
-  if (movie.acceptable_guess.includes(playerGuess.toLowerCase())) {
+  if (movie.acceptable_guess.includes(playerGuess.trim().toLowerCase())) {
     const movieCard = document.getElementById("movie-card");
     const movieForm = document.getElementById("movie-form");
-	  
+
     movieForm.children[1].remove();
-    movieForm.innerHTML = movieForm.innerHTML +  `<button class="btn" style="margin: 1rem .5rem" id:"btn_tryAgain" type="button" onClick="restart()">Tentar novamente</button>`;
-    movieCard.innerHTML = "<h2>Você acertou!!!</h2>" + movieCard.innerHTML;
+    movieForm.innerHTML =
+      movieForm.innerHTML +
+      `<button class="btn" style="margin: 1rem .5rem" id:"btn_tryAgain" type="button" onClick="restart()">Tentar novamente</button>`;
+    movieForm.innerHTML = `<div style="width: 100%"> <h2 class="success">Você Acertou!</h2> <br> <div  class="movie__form"> ${movieForm.innerHTML} </div> </div>`;
   } else {
     // If not, show next image
     const movieImages = document.getElementById("movie-images");
@@ -97,6 +103,8 @@ const guessMovie = () => {
       }.jpeg`}" alt="${`image_${+firstImageNumber + imagesNumber}`}" />`;
 
       movieImages.appendChild(newImageContainer.firstChild);
+
+      setTimeout(() => (movieImages.scrollLeft = movieImages.scrollWidth), 500);
     } else {
       // If wasted all guesses, show restart button
       const movieCard = document.getElementById("movie-card");
@@ -106,7 +114,7 @@ const guessMovie = () => {
 
       movieForm.innerHTML =
         movieForm.innerHTML + `<button class="btn" style="margin: 1rem .5rem" type="button" onClick="restart()">Tentar novamente</button>`;
-      movieCard.innerHTML = `<h2>Você Falhou!!!</h2> <br> <h3> Resposta: ${movie.title} </h3>` + movieCard.innerHTML;
+      movieForm.innerHTML = `<div style="width: 100%"> <h2 class="fail">Você Falhou!</h2>  <h3 class="answer"> Resposta: ${movie.title} </h3> <br> <div  class="movie__form"> ${movieForm.innerHTML} </div> </div>`;
     }
   }
 };
@@ -119,16 +127,18 @@ const hint = (movie) => {
     <h2 style="padding-top: 1rem">Dicas</h2>
     <p id="hint_1">Ano de lançamento: ${movie.hints.year} </p>`;
 
-    // Conditionals to display the hints in order
-    if (document.getElementById("hint_1") === null) {
-      return (hints.innerHTML = hintCard);
-    } else if (document.getElementById("hint_2") === null) {
-      return (hints.innerHTML = hints.innerHTML + `<p id="hint_2">Gênero: ${movie.hints.genre} </p>`);
-    } else if (document.getElementById("hint_3") === null) {
-      return (hints.innerHTML = hints.innerHTML + `<p id="hint_3">Diretor: ${movie.hints.director} </p>`);
-    } else if (document.getElementById("hint_4") === null) {
-      return (hints.innerHTML = hints.innerHTML + `<p id="hint_4">Sinópse: ${movie.hints.synopsis} </p>`);
-    } else {hints.innerHTML}
+  // Conditionals to display the hints in order
+  if (document.getElementById("hint_1") === null) {
+    return (hints.innerHTML = hintCard);
+  } else if (document.getElementById("hint_2") === null) {
+    return (hints.innerHTML = hints.innerHTML + `<p id="hint_2">Gênero: ${movie.hints.genre} </p>`);
+  } else if (document.getElementById("hint_3") === null) {
+    return (hints.innerHTML = hints.innerHTML + `<p id="hint_3">Diretor: ${movie.hints.director} </p>`);
+  } else if (document.getElementById("hint_4") === null) {
+    return (hints.innerHTML = hints.innerHTML + `<p id="hint_4">Sinópse: ${movie.hints.synopsis} </p>`);
+  } else {
+    hints.innerHTML;
+  }
 };
 
 // Function to update the time
@@ -141,20 +151,32 @@ const updateTime = () => {
 
   // Conditionals for timer operation
   if (minutesCount === 0 && secondsCount === 0) {
-        return (clearInterval(), restart())}
-    else if (secondsCount > 0) {
-      if (secondsCount > 10) {
-      seconds.innerHTML = (secondsCount - 1)}
-      else if (secondsCount <= 10) {
-      seconds.innerHTML = (`0${(secondsCount - 1)}`)}} 
-    else {minutes.innerHTML = `0${(minutesCount - 1)}`
-      seconds.innerHTML = 59;};
+    const movieForm = document.getElementById("movie-form");
+
+    movieForm.children[1].remove();
+
+    movieForm.innerHTML =
+      movieForm.innerHTML + `<button class="btn" style="margin: 1rem .5rem" type="button" onClick="restart()">Tentar novamente</button>`;
+    movieForm.innerHTML = `<div style="width: 100%"> <h2 class="fail">Você Falhou!</h2>  <h3 class="answer"> Resposta: ${movie.title} </h3> <br> <div  class="movie__form"> ${movieForm.innerHTML} </div> </div>`;
+
+    return clearInterval();
+  } else if (secondsCount > 0) {
+    if (secondsCount > 10) {
+      seconds.innerHTML = secondsCount - 1;
+    } else if (secondsCount <= 10) {
+      seconds.innerHTML = `0${secondsCount - 1}`;
+    }
+  } else {
+    minutes.innerHTML = `0${minutesCount - 1}`;
+    seconds.innerHTML = 59;
+  }
 };
 
 // Function to start the timer
 const startTimer = () => {
   // Function to display the timer
-  document.getElementById("time-card").innerHTML = '<span> Tempo: <span class="minutes" id="mins">02</span><span>:</span><span class="seconds" id="secs">30</span></span>';
+  document.getElementById("time-card").innerHTML =
+    '<span><span class="minutes" id="mins">01</span><span>:</span><span class="seconds" id="secs">00</span></span>';
   // Function to call time update every 1000 milisecond (1 second)
   setInterval(() => updateTime(), 1000);
 };
