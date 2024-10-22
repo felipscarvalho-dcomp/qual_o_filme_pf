@@ -2,24 +2,24 @@ const movies = [
   {
     title: "Dirty Dancing - Ritmo Quente",
     acceptable_guess: ["dirty dancing - ritmo quente", "dirty dancing", "dirty dancing ritmo quente", "dirty dancing: ritmo quente", "ritmo quente"],
-    start_image: "img_1",
+    start_image: "1",
     hints: {
       year: "1986",
       genre: ["drama romântico", " musical"],
       director: "Emile Ardolino",
-      sumary:
+      synopsis:
         "Passando o verão em um resort em Catskills com sua família, Frances 'Baby' Houseman se apaixona pelo instrutor de dança do acampamento, Johnny Castle.",
     },
   },
   {
     title: "Thor: Ragnarok",
     acceptable_guess: ["thor: ragnarok", "thor ragnarok", "thor 3"],
-    start_image: "img_7",
+    start_image: "7",
     hints: {
       year: "2017",
       genre: "super-herói",
       director: "Taika Waititi",
-      sumary:
+      synopsis:
         "Thor está aprisionado do outro lado do universo, sem seu martelo, e se vê em uma corrida para voltar até Asgard e impedir o Ragnarok, que está nas mãos de uma nova e poderosa ameaça, a terrível Hela.",
     },
   },
@@ -44,7 +44,7 @@ const startGame = () => {
       <div class="timer" id="time-card">
       </div> <br>
       <div class="movie__images__slider"  id="movie-images">
-		    <img class="movie__image" src="${`./assets/movies/${movie.start_image}.jpeg`}" alt="${`image_${movie.start_image.slice(-1)}`}" />
+		    <img class="movie__image" src="${`./assets/movies/img_${movie.start_image}.jpeg`}" alt="${`image_${movie.start_image}`}" />
       </div>
 		  <form class="movie__form" id="movie-form">
 		  	<input class="input" id="guess-input" type="text" placeholder="Tente um filme ou aperte tentar para pular para a próxima imagem"/>
@@ -90,7 +90,7 @@ const guessMovie = () => {
     const imagesNumber = movieImages.childElementCount;
 
     if (imagesNumber < 6) {
-      const firstImageNumber = movieImages.children[0].src.slice(-6, -5);
+      const firstImageNumber = Number(movie.start_image);
       const newImageContainer = Object.freeze(document.createElement("div"));
       newImageContainer.innerHTML = `<img class="movie__image" src="${`./assets/movies/img_${
         +firstImageNumber + imagesNumber
@@ -127,7 +127,7 @@ const hint = (movie) => {
     } else if (document.getElementById("hint_3") === null) {
       return (hints.innerHTML = hints.innerHTML + `<p id="hint_3">Diretor: ${movie.hints.director} </p>`);
     } else if (document.getElementById("hint_4") === null) {
-      return (hints.innerHTML = hints.innerHTML + `<p id="hint_4">Sinópse: ${movie.hints.sumary} </p>`);
+      return (hints.innerHTML = hints.innerHTML + `<p id="hint_4">Sinópse: ${movie.hints.synopsis} </p>`);
     } else {hints.innerHTML}
 };
 
