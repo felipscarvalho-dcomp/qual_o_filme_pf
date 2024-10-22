@@ -61,6 +61,11 @@ body {
   padding: 0.25rem 0;
 }
 
+.hints > p {
+  align-self: flex-start;
+  padding: 0.25rem 0;
+}
+
 .btn {
   background-color: rgb(106, 116, 255);
   outline: none;
@@ -102,4 +107,21 @@ body {
 
 .input:focus {
   background-color: rgb(23, 23, 29);
+}
+
+.lobby_guesses {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  background-color: rgb(106, 116, 255, 0.2);
+  border: 1px rgb(106, 116, 255) solid;
+  padding: 1rem 3rem;
+  margin: 1.5rem 0;
+  border-radius: 12px;
+}
+
+.lobby_guesses > span {
+  align-self: flex-start;
+  padding: 0.25rem 0;
 }
